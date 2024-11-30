@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mael</title>
+    <style>
+        .buttons button:hover {
+            background-color: #480e6d;
+        }
+
+        .buttons button {
+            background-color: #fad1d1;
+            color: #ab1278;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 10px;
+            margin: 10px;
+            font-size: 26px;
+            cursor: pointer;
+            position: relative;
+            font-size: 20px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            top: 40%;
+        }
+
+        .buttons
+        {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            display: none; /* Masquer initialement */
+        }
+        .buttons1 
+         {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+           
+        }
+
+        .image1 {
+            position: relative;
+            height: 100vh;
+            display: none; /* Masquer initialement */
+        }
+
+        img {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .askout, .text {
+            justify-content: center;
+            margin: 40px;
+        }
+
+        .askout p {
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            text-align: center;
+            font-size: 20px;
+            background: linear-gradient(135deg, #d6a1e5 0%, #c05133 100%);
+            border: none;
+            border-radius: 30px;
+            padding: 65px 60px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            width: fit-content;
+            margin-top: 60px;
+        }
+        .text p {
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            text-align: center;
+            font-size: 20px;
+            background: linear-gradient(135deg, #87d6e2 0%, #91a0d8 100%);
+            border: none;
+            border-radius: 30px;
+            padding: 65px 60px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            width: fit-content;
+            margin-top: 60px;
+        }
+
+        .askout {
+            display: none; /* Masquer initialement */
+        }
+    </style>
+</head>
+<body>
+    <div class="text" id="desole">
+        <p>
+            Je m’excuse très sincèrement pour ce que j’ai fait. Je me rends compte que c’était totalement débile et stupide de ma part. Féliciter quelqu’un qui t’a clairement fait du mal, même en plaisantant, c’est juste insensé et insensible de ma part, et je comprends parfaitement pourquoi ça t’a blessé. C’est totalement légitime que tu te sentes comme ça, et je m’en veux de ne pas avoir réfléchi avant de dire une connerie pareille.
+
+            Je suis consciente de mes torts et je te promets que ça ne se reproduira plus. Si une situation comme celle-ci devait arriver à nouveau, j'éviterai à tout prix ce genre de remarques qui peuvent blesser.
+
+            J’espère que tu sais que je tiens beaucoup à toi et que je ne voulais absolument pas minimiser ce que tu as vécu. Encore désolée, et merci de m’avoir expliqué calmement ce que tu ressens, ça compte beaucoup pour moi.
+        </p>
+    </div>
+    <div class="buttons1" id="buttons">
+        <button id="nextButton">NEXT</button>
+    </div>
+    
+
+    <div class="askout" id="question">
+        <p>⊹♡ Est-ce que tu m'en veux encore?(´｡• ^ •｡`) ♡             </p>
+        <p>Le oui ne fait pas partie des options</p>
+    </div>
+
+    <div class="image1" id="image-container">
+        <img id="catImage" src="https://i.pinimg.com/736x/49/dc/1d/49dc1d657112d8b23eb4fda87bdd8cfe.jpg" alt="CUTE CAT" width="400" height="400">
+    </div>
+
+    <div class="buttons" id="buttons-container">
+        <button id="no-button" onclick="moveButton()">ε(´｡•᎑•`)っ 💕non</button>
+    </div>
+
+    <script>
+        const nextButton = document.getElementById('nextButton');
+        const desole = document.getElementById('desole');
+        const question = document.getElementById('question');
+        const imageContainer = document.getElementById('image-container');
+        const buttonsContainer = document.getElementById('buttons-container');
+
+        nextButton.addEventListener('click', function () {
+    // Faire disparaître le bouton NEXT
+    nextButton.style.display = 'none';
+
+    // Faire disparaître la section texte
+    desole.style.display = 'none';
+
+    // Afficher la question, l'image et les boutons
+    question.style.display = 'flex';
+    imageContainer.style.display = 'block';
+    buttonsContainer.style.display = 'flex';
+});
+
+
+        let count = 0;
+        function moveButton() {
+            const noButton = document.getElementById("no-button");
+            const maxWidth = window.innerWidth - noButton.offsetWidth;
+            const maxHeight = window.innerHeight - noButton.offsetHeight;
+
+            const randomX = Math.max(0, Math.floor(Math.random() * maxWidth));
+            const randomY = Math.max(0, Math.floor(Math.random() * maxHeight));
+            noButton.style.position = "absolute";
+            noButton.style.left = randomX + "px";
+            noButton.style.top = randomY + "px";
+
+            const img = document.getElementById('catImage');
+            img.src = 'https://i.pinimg.com/736x/aa/dc/a4/aadca4e43a4c06780e328f448dcb3d27.jpg';
+            question.textContent = "???Pourquoi tu ne cliques pas sur le NON???";
+            count++;
+
+            if (count > 2) {
+                noButton.remove();
+                question.textContent = "💕💕Merci de plus m'envouloir, et encore desolée d'etre une extra maxi andouille  💕💕";
+                img.src = 'https://i.pinimg.com/736x/25/8e/13/258e132efce3ad740fb2d3696823ad8d.jpg';
+            } else if (count > 3) {
+                img.src = 'https://i.pinimg.com/736x/c1/bf/9f/c1bf9faac385086ebc6cb45fbe5f3de2.jpg';
+                question.textContent = "Je savais que tu m'en voulais encore :(";
+            } else if (count > 1) {
+                img.src = 'https://i.pinimg.com/736x/80/bc/ed/80bced5471232742ef9d30323c0c18ca.jpg';
+                question.textContent = "Bon qu'est ce que t'attend pour cliquer sur le bouton c'est pas compliqué pourtant ";
+            }
+        }
+    </script>
+</body>
+</html>
